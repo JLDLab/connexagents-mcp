@@ -1,0 +1,27 @@
+{
+  "name": "connexagents-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MCP server for ConnexAgents: an agent records a need, a human operator routes it manually today, and the agent follows its status.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JLDLab/connexagents-mcp.git"
+  },
+  "type": "module",
+  "bin": {
+    "connexagents-mcp": "src/index.ts"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "start": "node src/index.ts",
+    "fake-api": "node test/fake-api/start.ts",
+    "test": "node --test \"test/*.test.ts\""
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  }
+}
