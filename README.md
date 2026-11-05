@@ -111,6 +111,8 @@ Toutes les valeurs ci-dessous sont fictives.
 }
 ```
 
+Pour être routable, un besoin doit citer un tag de capacité tel que les spécialistes le déclarent, en anglais : `api-auth` dans `domain_hint`, par exemple.
+
 Réponse :
 
 ```json
@@ -163,7 +165,7 @@ Une fois le handoff conclu :
   "timeline": {
     "detected_at": "2026-12-01T08:00:00.000Z",
     "routed_at": "2026-12-01T09:00:00.000Z",
-    "accepted_at": "2026-12-01T09:30:00.000Z",
+    "accepted_at": null,
     "delivered_at": "2026-12-02T07:00:00.000Z",
     "verdict_at": "2026-12-02T08:00:00.000Z"
   },
