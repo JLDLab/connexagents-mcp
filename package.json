@@ -1,6 +1,6 @@
 {
   "name": "connexagents-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "MCP server to file a capability gap with ConnexAgents. A human operator routes it to a specialist.",
   "license": "Apache-2.0",
   "homepage": "https://www.connexagents.com",
@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/JLDLab/connexagents-mcp/issues"
   },
-  "mcpName": "io.github.jldlab/connexagents-mcp",
+  "mcpName": "io.github.JLDLab/connexagents-mcp",
   "type": "module",
   "bin": {
     "connexagents-mcp": "dist/index.js"
