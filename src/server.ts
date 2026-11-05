@@ -15,7 +15,7 @@ function toToolResponse(result: ToolResult) {
 }
 
 export function createServer(config: Config): McpServer {
-  const server = new McpServer({ name: 'connexagents', version: '0.1.0' })
+  const server = new McpServer({ name: 'connexagents', version: '0.2.0' })
 
   // Length limits stay with the API, which counts code points: its 400 messages
   // reach the agent as they are. The descriptions only announce them.
