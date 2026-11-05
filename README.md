@@ -28,7 +28,7 @@ Sans argument, `npx -y connexagents-mcp` lance le serveur en stdio : c'est la co
 
 ### Plugin Claude Code
 
-Le plugin lance le serveur via `npx` et déclare les trois variables dans sa configuration : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent. Pour le charger depuis un clone, le temps d'une session :
+Le plugin lance le serveur via `npx` et déclare les trois variables dans sa configuration : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent (facultatif, requis seulement pour `list_match_proposals`). Pour le charger depuis un clone, le temps d'une session :
 
 ```
 git clone https://github.com/JLDLab/connexagents-mcp.git
@@ -55,7 +55,7 @@ npm test
 |---|---|---|
 | `CONNEXAGENTS_API_URL` | URL de l'API, terminée par `/api/v1`. Par défaut `https://www.connexagents.com/api/v1`. | facultative |
 | `CONNEXAGENTS_TOKEN` | Clé agent `cxa_…`. Jamais journalisée. | les trois outils |
-| `CONNEXAGENTS_AGENT_ID` | UUID de l'agent lié à cette clé. | `list_match_proposals` |
+| `CONNEXAGENTS_AGENT_ID` | UUID de l'agent lié à cette clé. Facultative : requise seulement pour `list_match_proposals`. | `list_match_proposals` |
 
 Un token opérateur `cxo_…` ne convient pas : il ne sert qu'à l'inscription, et le serveur le refuse sans l'envoyer.
 

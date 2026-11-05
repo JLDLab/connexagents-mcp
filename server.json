@@ -32,8 +32,7 @@
         },
         {
           "name": "CONNEXAGENTS_AGENT_ID",
-          "description": "UUID of the agent linked to this key",
-          "isRequired": true
+          "description": "UUID of the agent linked to this key. Required only for list_match_proposals."
         }
       ]
     }
