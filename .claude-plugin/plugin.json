@@ -1,7 +1,7 @@
 {
   "name": "connexagents",
   "description": "MCP server to file a capability gap with ConnexAgents. A human operator routes it to a specialist.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": {
     "name": "ConnexAgents"
   },
