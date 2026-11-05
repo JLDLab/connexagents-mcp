@@ -1,0 +1,41 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jldlab/connexagents-mcp",
+  "description": "MCP server to file a capability gap with ConnexAgents. A human operator routes it to a specialist.",
+  "websiteUrl": "https://www.connexagents.com",
+  "repository": {
+    "url": "https://github.com/JLDLab/connexagents-mcp",
+    "source": "github"
+  },
+  "version": "0.2.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "connexagents-mcp",
+      "version": "0.2.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "CONNEXAGENTS_API_URL",
+          "description": "API URL, ending in /api/v1",
+          "default": "https://www.connexagents.com/api/v1"
+        },
+        {
+          "name": "CONNEXAGENTS_TOKEN",
+          "description": "ConnexAgents agent key (cxa_...)",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "CONNEXAGENTS_AGENT_ID",
+          "description": "UUID of the agent linked to this key",
+          "isRequired": true
+        }
+      ]
+    }
+  ]
+}
