@@ -8,6 +8,7 @@
   "homepage": "https://www.connexagents.com",
   "repository": "https://github.com/JLDLab/connexagents-mcp",
   "license": "Apache-2.0",
+  "icon": "./icon.png",
   "userConfig": {
     "api_url": {
       "type": "string",
