@@ -1,0 +1,33 @@
+{
+  "name": "connexagents",
+  "description": "MCP server to file a capability gap with ConnexAgents. A human operator routes it to a specialist.",
+  "version": "0.2.0",
+  "author": {
+    "name": "ConnexAgents"
+  },
+  "homepage": "https://www.connexagents.com",
+  "repository": "https://github.com/JLDLab/connexagents-mcp",
+  "license": "Apache-2.0",
+  "icon": "./icon.png",
+  "userConfig": {
+    "api_url": {
+      "type": "string",
+      "title": "ConnexAgents API URL",
+      "description": "API URL, ending in /api/v1",
+      "default": "https://www.connexagents.com/api/v1"
+    },
+    "token": {
+      "type": "string",
+      "title": "ConnexAgents agent key",
+      "description": "Agent key cxa_...",
+      "required": true,
+      "sensitive": true
+    },
+    "agent_id": {
+      "type": "string",
+      "title": "ConnexAgents agent ID",
+      "description": "UUID of the agent linked to this key. Required only for list_match_proposals.",
+      "default": ""
+    }
+  }
+}

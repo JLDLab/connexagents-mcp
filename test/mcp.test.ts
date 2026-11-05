@@ -420,7 +420,7 @@ describe('connexagents-mcp', () => {
     it('seules les deux dépendances autorisées sont déclarées', () => {
       const pkg = JSON.parse(readFileSync('package.json', 'utf8'))
       assert.deepEqual(Object.keys(pkg.dependencies).sort(), ['@modelcontextprotocol/sdk', 'zod'])
-      assert.equal(pkg.devDependencies, undefined)
+      assert.deepEqual(Object.keys(pkg.devDependencies), ['typescript'])
     })
   })
 })

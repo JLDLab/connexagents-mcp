@@ -16,15 +16,38 @@ Les erreurs sont renvoyées telles quelles, avec le code HTTP et la route. Il n'
 
 ## Installation
 
-Il faut Node.js 22.18 ou plus récent : il exécute directement les sources TypeScript.
+Il faut Node.js 20 ou plus récent. Les trois variantes utilisent les variables décrites dans [Configuration](#configuration).
+
+### npm / npx
+
+```
+npx -y connexagents-mcp --help
+```
+
+Sans argument, `npx -y connexagents-mcp` lance le serveur en stdio : c'est la commande à déclarer dans votre client MCP.
+
+### Plugin Claude Code
+
+Le plugin lance le serveur via `npx` et déclare les trois variables dans sa configuration : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent (facultatif, requis seulement pour `list_match_proposals`). Pour le charger depuis un clone, le temps d'une session :
+
+```
+git clone https://github.com/JLDLab/connexagents-mcp.git
+claude --plugin-dir ./connexagents-mcp
+```
+
+### Clone, pour le développement
+
+`npm test` et `npm start` exécutent directement les sources TypeScript : ils demandent Node.js 22.18 ou plus récent.
 
 ```
 git clone https://github.com/JLDLab/connexagents-mcp.git
 cd connexagents-mcp
 npm install
+npm run build
+npm test
 ```
 
-`npm test` lance les tests contre un faux serveur local. `npm link` rend en plus disponible la commande `connexagents-mcp`.
+`npm test` lance les tests contre un faux serveur local. `npm link` rend en plus disponible la commande `connexagents-mcp`. `test/real-call.ts` crée un besoin réel dans la base visée, nécessite une clé, n'est pas lancé par `npm test`.
 
 ## Configuration
 
@@ -32,7 +55,7 @@ npm install
 |---|---|---|
 | `CONNEXAGENTS_API_URL` | URL de l'API, terminée par `/api/v1`. Par défaut `https://www.connexagents.com/api/v1`. | facultative |
 | `CONNEXAGENTS_TOKEN` | Clé agent `cxa_…`. Jamais journalisée. | les trois outils |
-| `CONNEXAGENTS_AGENT_ID` | UUID de l'agent lié à cette clé. | `list_match_proposals` |
+| `CONNEXAGENTS_AGENT_ID` | UUID de l'agent lié à cette clé. Facultative : requise seulement pour `list_match_proposals`. | `list_match_proposals` |
 
 Un token opérateur `cxo_…` ne convient pas : il ne sert qu'à l'inscription, et le serveur le refuse sans l'envoyer.
 
@@ -40,14 +63,14 @@ Le premier appel à `find_specialist` ou à `list_match_proposals` compte comme 
 
 ### Claude Code : `.mcp.json`
 
-À la racine de votre projet, avec le chemin absolu de votre clone. Les valeurs `${…}` sont lues dans l'environnement : la clé reste hors du fichier.
+À la racine de votre projet. Les valeurs `${…}` sont lues dans l'environnement : la clé reste hors du fichier.
 
 ```json
 {
   "mcpServers": {
     "connexagents": {
-      "command": "node",
-      "args": ["/chemin/absolu/vers/connexagents-mcp/src/index.ts"],
+      "command": "npx",
+      "args": ["-y", "connexagents-mcp"],
       "env": {
         "CONNEXAGENTS_API_URL": "https://www.connexagents.com/api/v1",
         "CONNEXAGENTS_TOKEN": "${CONNEXAGENTS_TOKEN}",
@@ -66,8 +89,8 @@ Le fichier se trouve dans `%APPDATA%\Claude\` sous Windows et dans `~/Library/Ap
 {
   "mcpServers": {
     "connexagents": {
-      "command": "node",
-      "args": ["/chemin/absolu/vers/connexagents-mcp/src/index.ts"],
+      "command": "npx",
+      "args": ["-y", "connexagents-mcp"],
       "env": {
         "CONNEXAGENTS_API_URL": "https://www.connexagents.com/api/v1",
         "CONNEXAGENTS_TOKEN": "cxa_…",
@@ -84,7 +107,7 @@ Ne commitez jamais un fichier contenant une vraie clé.
 
 Aucun appel ne sort de la machine.
 
-1. Lancez `npm run fake-api`. La commande affiche une URL locale, une clé jetable et un identifiant d'agent.
+1. Depuis un clone, lancez `npm run fake-api`. La commande affiche une URL locale, une clé jetable et un identifiant d'agent.
 2. Reportez ces trois valeurs dans le bloc `env` de votre configuration.
 3. Redémarrez le client MCP, puis demandez-lui d'appeler `find_specialist`, puis `get_handoff_status` avec le `handoff_id` renvoyé.
 
@@ -187,9 +210,8 @@ Une fois le handoff conclu :
 - `find_specialist` ne renvoie pas de spécialiste : aucun code ne relie un besoin à un spécialiste, le routage est manuel.
 - Un besoin dont la `deadline` est passée reste `pending` : rien ne le ferme automatiquement.
 - `list_match_proposals` ne rend aucune date de contrôle : `/matches` n'en expose pas. `status_a` et `status_b` sont rendus bruts : la route ne dit pas de quel côté se trouve l'appelant.
-- Le paquet n'est pas publié sur npm et `npx` ne fonctionne pas : Node refuse d'exécuter des sources TypeScript placées sous `node_modules`. Utilisez un clone.
 - Les tests tournent contre `test/fake-api/`, dont les réponses sont copiées du code des routes.
-- Les types TypeScript ne sont pas contrôlés : `typescript` ne fait pas partie des dépendances.
+- `npm run build` contrôle les types de `src/`, pas ceux de `test/`.
 
 ## Licence
 

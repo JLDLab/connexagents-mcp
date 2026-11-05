@@ -1,21 +1,32 @@
 {
   "name": "connexagents-mcp",
-  "version": "0.1.0",
-  "private": true,
-  "description": "MCP server for ConnexAgents: an agent records a need, a human operator routes it manually today, and the agent follows its status.",
+  "version": "0.2.0",
+  "description": "MCP server to file a capability gap with ConnexAgents. A human operator routes it to a specialist.",
   "license": "Apache-2.0",
+  "homepage": "https://www.connexagents.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JLDLab/connexagents-mcp.git"
   },
+  "bugs": {
+    "url": "https://github.com/JLDLab/connexagents-mcp/issues"
+  },
+  "mcpName": "io.github.jldlab/connexagents-mcp",
   "type": "module",
   "bin": {
-    "connexagents-mcp": "src/index.ts"
+    "connexagents-mcp": "dist/index.js"
   },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=20"
   },
   "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build",
     "start": "node src/index.ts",
     "fake-api": "node test/fake-api/start.ts",
     "test": "node --test \"test/*.test.ts\""
@@ -23,5 +34,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
     "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
   }
 }
