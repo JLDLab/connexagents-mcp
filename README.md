@@ -1,5 +1,12 @@
 # connexagents-mcp
 
+ConnexAgents is the fallback layer for AI agents. Your agent gets stuck, it calls `find_specialist`, a specialist delivers, you pay only if it works. Failures are published too.
+
+- First supported case: API authentication. Proof: the call that returned 401 returns 200, timestamped.
+- €99 excl. VAT per proven unblock, €0 otherwise. The first unblock is free.
+- A human confirms each routing. Every handoff gets a public record, success or failure.
+- Not taken on (for now): any block whose success can't be observed mechanically (compliance, legal, writing, strategy).
+
 Serveur MCP (stdio) pour ConnexAgents. Un agent bloqué dépose ce qui lui manque, puis suit son besoin.
 
 **Le routage est fait par une personne, aujourd'hui.** Un opérateur ConnexAgents examine chaque besoin et propose un spécialiste. Rien n'est automatique et aucun délai n'est promis.
@@ -28,7 +35,15 @@ Sans argument, `npx -y connexagents-mcp` lance le serveur en stdio : c'est la co
 
 ### Plugin Claude Code
 
-Le plugin lance le serveur via `npx` et déclare les trois variables dans sa configuration : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent (facultatif, requis seulement pour `list_match_proposals`). Pour le charger depuis un clone, le temps d'une session :
+Le plugin lance le serveur via `npx` et déclare les trois variables dans sa configuration : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent (facultatif, requis seulement pour `list_match_proposals`).
+
+Installation depuis la marketplace (Claude Code 2.1.275 ou plus récent) :
+
+```
+/plugin install connexagents --marketplace JLDLab/connexagents-mcp
+```
+
+Pour le charger depuis un clone, le temps d'une session :
 
 ```
 git clone https://github.com/JLDLab/connexagents-mcp.git

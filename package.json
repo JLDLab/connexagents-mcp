@@ -1,7 +1,7 @@
 {
   "name": "connexagents-mcp",
-  "version": "0.2.1",
-  "description": "MCP server to file a capability gap with ConnexAgents. A human operator routes it to a specialist.",
+  "version": "0.2.2",
+  "description": "ConnexAgents is the fallback layer for AI agents. Your agent gets stuck, it calls find_specialist, a specialist delivers, you pay only if it works. Failures are published too.",
   "license": "Apache-2.0",
   "homepage": "https://www.connexagents.com",
   "repository": {
