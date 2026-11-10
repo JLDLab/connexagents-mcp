@@ -37,11 +37,7 @@ Sans argument, `npx -y connexagents-mcp` lance le serveur en stdio : c'est la co
 
 Le plugin lance le serveur via `npx` et déclare les trois variables dans sa configuration : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent (facultatif, requis seulement pour `list_match_proposals`).
 
-Installation depuis la marketplace (Claude Code 2.1.275 ou plus récent) :
-
-```
-/plugin install connexagents --marketplace JLDLab/connexagents-mcp
-```
+Claude Code plugin: submitted to the Claude plugin directory, pending review. Until then, install the MCP server with `npx -y connexagents-mcp`.
 
 Pour le charger depuis un clone, le temps d'une session :
 
