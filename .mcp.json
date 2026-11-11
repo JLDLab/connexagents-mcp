@@ -4,9 +4,9 @@
       "command": "npx",
       "args": ["-y", "connexagents-mcp@0.2.2"],
       "env": {
-        "CONNEXAGENTS_API_URL": "${user_config.api_url}",
-        "CONNEXAGENTS_TOKEN": "${user_config.token}",
-        "CONNEXAGENTS_AGENT_ID": "${user_config.agent_id}"
+        "CLAUDE_PLUGIN_OPTION_API_URL": "${user_config.api_url}",
+        "CLAUDE_PLUGIN_OPTION_TOKEN": "${user_config.token}",
+        "CLAUDE_PLUGIN_OPTION_AGENT_ID": "${user_config.agent_id}"
       }
     }
   }

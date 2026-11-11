@@ -27,17 +27,21 @@ Il faut Node.js 20 ou plus récent. Les trois variantes utilisent les variables 
 
 ### npm / npx
 
+Étape manuelle, à faire vous-même dans un terminal. Le paquet est publié sur npm sous le nom `connexagents-mcp` : vous pouvez consulter sa page avant de lancer quoi que ce soit. Pour vérifier qu'il s'exécute, tapez :
+
 ```
-npx -y connexagents-mcp --help
+npx connexagents-mcp@0.2.2 --help
 ```
 
-Sans argument, `npx -y connexagents-mcp` lance le serveur en stdio : c'est la commande à déclarer dans votre client MCP.
+Sans `-y`, `npx` demande confirmation avant de télécharger le paquet. La commande affiche l'aide et s'arrête.
+
+Vous n'avez pas à lancer le serveur à la main : c'est votre client MCP qui le démarre, en stdio, à partir de la commande déclarée dans sa configuration (voir [Configuration](#configuration)).
 
 ### Plugin Claude Code
 
-Le plugin lance le serveur via `npx` et déclare les trois variables dans sa configuration : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent (facultatif, requis seulement pour `list_match_proposals`).
+Le plugin lance le serveur via `npx` et demande trois options à l'activation : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent (facultatif, requis seulement pour `list_match_proposals`). Il les transmet au serveur dans `CLAUDE_PLUGIN_OPTION_API_URL`, `CLAUDE_PLUGIN_OPTION_TOKEN` et `CLAUDE_PLUGIN_OPTION_AGENT_ID`. Le serveur lit ces variables en premier, puis les variables `CONNEXAGENTS_*` en repli.
 
-Claude Code plugin: submitted to the Claude plugin directory, pending review. Until then, install the MCP server with `npx -y connexagents-mcp`.
+Claude Code plugin: submitted to the Claude plugin directory, pending review. Until then, use the MCP server through npm, as described in [npm / npx](#npm--npx).
 
 Pour le charger depuis un clone, le temps d'une session :
 

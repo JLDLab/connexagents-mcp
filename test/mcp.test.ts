@@ -362,6 +362,35 @@ describe('connexagents-mcp', () => {
       assert.equal(loadConfig({ CONNEXAGENTS_API_URL: 'http://localhost:4545/api/v1/' }).apiUrl, 'http://localhost:4545/api/v1')
     })
 
+    it('lit les options du plugin avant les variables CONNEXAGENTS_*', () => {
+      const config = loadConfig({
+        CLAUDE_PLUGIN_OPTION_API_URL: 'http://localhost:4545/api/v1',
+        CLAUDE_PLUGIN_OPTION_TOKEN: 'cxa_plugin',
+        CLAUDE_PLUGIN_OPTION_AGENT_ID: 'agent-plugin',
+        CONNEXAGENTS_API_URL: 'http://127.0.0.1:9999/api/v1',
+        CONNEXAGENTS_TOKEN: 'cxa_env',
+        CONNEXAGENTS_AGENT_ID: 'agent-env',
+      })
+      assert.equal(config.apiUrl, 'http://localhost:4545/api/v1')
+      assert.equal(config.token, 'cxa_plugin')
+      assert.equal(config.agentId, 'agent-plugin')
+    })
+
+    it('se replie sur CONNEXAGENTS_* quand une option du plugin est vide', () => {
+      const config = loadConfig({
+        CLAUDE_PLUGIN_OPTION_API_URL: '',
+        CLAUDE_PLUGIN_OPTION_TOKEN: '  ',
+        CLAUDE_PLUGIN_OPTION_AGENT_ID: '',
+        CONNEXAGENTS_API_URL: 'http://127.0.0.1:9999/api/v1',
+        CONNEXAGENTS_TOKEN: 'cxa_env',
+        CONNEXAGENTS_AGENT_ID: 'agent-env',
+      })
+      assert.equal(config.apiUrl, 'http://127.0.0.1:9999/api/v1')
+      assert.equal(config.token, 'cxa_env')
+      assert.equal(config.agentId, 'agent-env')
+      assert.equal(loadConfig({ CLAUDE_PLUGIN_OPTION_AGENT_ID: '' }).agentId, undefined)
+    })
+
     it('refuse les URL dangereuses ou inutilisables, sans les afficher', () => {
       const secret = 'hunter2'
       for (const url of [

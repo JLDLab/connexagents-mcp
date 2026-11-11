@@ -39,11 +39,18 @@ function parseApiUrl(raw: string): string {
   return normalized
 }
 
+// The Claude Code plugin passes its userConfig options as CLAUDE_PLUGIN_OPTION_*.
+// CONNEXAGENTS_* remain the fallback for use outside the plugin (npx, Claude Desktop).
+// An empty or blank value counts as absent, so an unset plugin option falls back.
+function read(env: Record<string, string | undefined>, option: string, legacy: string): string | undefined {
+  return env[`CLAUDE_PLUGIN_OPTION_${option}`]?.trim() || env[legacy]?.trim() || undefined
+}
+
 export function loadConfig(env: Record<string, string | undefined>): Config {
   return {
-    apiUrl: parseApiUrl(env.CONNEXAGENTS_API_URL?.trim() || DEFAULT_API_URL),
-    token: env.CONNEXAGENTS_TOKEN?.trim() || undefined,
-    agentId: env.CONNEXAGENTS_AGENT_ID?.trim() || undefined,
+    apiUrl: parseApiUrl(read(env, 'API_URL', 'CONNEXAGENTS_API_URL') || DEFAULT_API_URL),
+    token: read(env, 'TOKEN', 'CONNEXAGENTS_TOKEN'),
+    agentId: read(env, 'AGENT_ID', 'CONNEXAGENTS_AGENT_ID'),
     timeoutMs: DEFAULT_TIMEOUT_MS,
   }
 }
