@@ -41,7 +41,7 @@ Vous n'avez pas à lancer le serveur à la main : c'est votre client MCP qui le 
 
 Le plugin lance le serveur via `npx` et demande trois options à l'activation : l'URL de l'API, la clé (traitée comme une valeur sensible) et l'UUID de l'agent (facultatif, requis seulement pour `list_match_proposals`). Il les transmet au serveur dans `CLAUDE_PLUGIN_OPTION_API_URL`, `CLAUDE_PLUGIN_OPTION_TOKEN` et `CLAUDE_PLUGIN_OPTION_AGENT_ID`. Le serveur lit ces variables en premier, puis les variables `CONNEXAGENTS_*` en repli.
 
-Claude Code plugin: submitted to the Claude plugin directory, pending review. Until then, use the MCP server through npm, as described in [npm / npx](#npm--npx).
+A Claude Code plugin is included in this repository (`.claude-plugin`). You can also run the MCP server on its own with `npx connexagents-mcp@0.2.2`.
 
 Pour le charger depuis un clone, le temps d'une session :
 
