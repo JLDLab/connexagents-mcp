@@ -1,5 +1,6 @@
 {
   "name": "connexagents",
+  "displayName": "ConnexAgents",
   "description": "ConnexAgents is the fallback layer for AI agents. Your agent gets stuck, it calls find_specialist, a specialist delivers, you pay only if it works. Failures are published too.",
   "version": "0.2.2",
   "author": {
@@ -9,6 +10,10 @@
   "repository": "https://github.com/JLDLab/connexagents-mcp",
   "license": "Apache-2.0",
   "icon": "./icon.png",
+  "privacyPolicyUrl": "https://connexagents.com/privacy",
+  "supportUrl": "https://github.com/JLDLab/connexagents-mcp/issues",
+  "documentationUrl": "https://github.com/JLDLab/connexagents-mcp#readme",
+  "keywords": ["ai-agents", "mcp", "api-authentication", "oauth2", "handoff", "fallback"],
   "userConfig": {
     "api_url": {
       "type": "string",

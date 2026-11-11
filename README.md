@@ -231,3 +231,5 @@ Une fois le handoff conclu :
 ## Licence
 
 [Apache 2.0](LICENSE)
+
+Privacy policy: https://connexagents.com/privacy
